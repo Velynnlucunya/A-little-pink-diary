@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A Little Pink Diary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fffafb;--paper:#fffdf8;--blush:#ffe8ef;--pink:#f6a5c0;--pink-d:#d9628f;--ink:#6b4452;--soft:#9a7783;--line:#f3cdd9;
+--n1:#ffe6ee;--n2:#fff3cc;--n3:#e3f6ef;--n4:#ebe4fb;
+--pat:radial-gradient(circle at 20px 14px,#efe3fb 7px,#0000 7.5px),radial-gradient(circle at 74px 46px,#dff6ee 7px,#0000 7.5px),radial-gradient(circle at 20px 100px,#fdecc4 7px,#0000 7.5px),radial-gradient(circle at 78px 118px,#dce9fa 7px,#0000 7.5px),repeating-linear-gradient(90deg,#fdf0f4 0 28px,#fffafb 28px 56px);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2b1f26;--paper:#3a2a33;--blush:#4a3340;--pink:#e58db0;--pink-d:#f4a8c6;--ink:#fbe3ea;--soft:#d3aebb;--line:#5b4351;--n1:#5a3a48;--n2:#57503a;--n3:#3d4f3d;--n4:#463f5c;--pat:none}}
+:root[data-theme="dark"]{--bg:#2b1f26;--paper:#3a2a33;--blush:#4a3340;--pink:#e58db0;--pink-d:#f4a8c6;--ink:#fbe3ea;--soft:#d3aebb;--line:#5b4351;--n1:#5a3a48;--n2:#57503a;--n3:#3d4f3d;--n4:#463f5c;--pat:none}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+*{box-sizing:border-box}
+body{margin:0;background-color:var(--bg);background-image:var(--pat);background-size:112px 140px;color:var(--ink);font:16px/1.75 Nunito,"PingFang SC","Noto Sans",system-ui,sans-serif}
+h1,h2{font-family:Pacifico,cursive;font-weight:400;margin:0}
+svg.i{width:1em;height:1em;fill:currentColor}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;justify-content:center;gap:2px;padding:8px 10px;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(6px);border-bottom:2px dashed var(--line)}
+nav a{text-decoration:none;color:var(--ink);font-weight:600;font-size:14px;padding:4px 11px;border-radius:99px}
+nav a:hover,nav a:active{background:var(--blush)}
+section{max-width:600px;margin:0 auto;padding:42px 20px}
+.hero{text-align:center;padding-top:30px;position:relative}
+.logo{font-size:clamp(34px,10vw,50px);line-height:1.3;color:var(--pink-d);margin:0 0 6px;animation:pop .8s ease both}
+.hello{color:var(--soft);margin:0 auto 14px;max-width:21em}
+.mascot{width:min(210px,56vw);display:block;margin:0 auto;animation:bob 4s ease-in-out infinite}
+.fl{position:absolute;color:var(--pink);animation:bob 6s ease-in-out infinite}
+.btn{display:inline-block;background:var(--pink-d);color:#fff;font-weight:700;text-decoration:none;padding:12px 30px;border-radius:99px;font-size:17px;box-shadow:0 4px 0 color-mix(in srgb,var(--pink-d) 60%,#000);transition:transform .2s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 color-mix(in srgb,var(--pink-d) 60%,#000)}
+h2{font-size:28px;color:var(--pink-d);text-align:center;margin-bottom:4px}
+.sub{text-align:center;color:var(--soft);margin:0 0 22px;font-size:15px}
+.tape{display:block;width:84px;height:20px;margin:0 auto -10px;position:relative;z-index:1;background:repeating-linear-gradient(45deg,var(--pink) 0 6px,var(--blush) 6px 12px);opacity:.85;transform:rotate(-2deg)}
+.sheet{background:var(--paper);border:2px dashed var(--pink);border-radius:18px;padding:22px 18px;box-shadow:0 6px 16px rgba(217,98,143,.1)}
+.warn{background:var(--blush);border-radius:12px;padding:10px 14px;font-size:14px;margin:0 0 16px}
+.formbox iframe{width:100%;height:620px;border:0;border-radius:10px;background:var(--paper)}
+.ph{text-align:center;color:var(--soft);padding:26px 8px;border:2px dotted var(--line);border-radius:12px}
+.wall{display:grid;gap:22px;padding-top:6px}
+.note{position:relative;padding:26px 18px 16px;border-radius:6px 6px 14px 6px;box-shadow:0 4px 12px rgba(107,68,82,.12);animation:pop .7s ease both;color:var(--ink)}
+.note:nth-child(odd){transform:rotate(-1.2deg)}.note:nth-child(even){transform:rotate(1deg)}
+.note::before{content:"";position:absolute;top:-9px;left:50%;width:60px;height:17px;margin-left:-30px;background:repeating-linear-gradient(45deg,var(--pink) 0 5px,#fff8 5px 10px);opacity:.8}
+.note p{margin:0 0 10px;white-space:pre-wrap;overflow-wrap:anywhere}
+.note small{display:flex;justify-content:space-between;gap:8px;color:var(--soft);font-size:13px}
+.c0{background:var(--n1)}.c1{background:var(--n2)}.c2{background:var(--n3)}.c3{background:var(--n4)}
+.about p{margin:0 0 12px}.about p:last-child{margin:0}
+footer{text-align:center;color:var(--soft);font-size:13px;padding:6px 20px 40px}
+footer .i{color:var(--pink);font-size:20px}
+@keyframes bob{50%{transform:translateY(-7px)}}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="star" viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7L12 17.2 5.7 20.9l1.7-7L2 9.2l7.1-.6z"/></symbol>
+<symbol id="flower" viewBox="0 0 24 24"><g><circle cx="12" cy="5.5" r="4.2"/><circle cx="18.3" cy="10" r="4.2"/><circle cx="16" cy="17.5" r="4.2"/><circle cx="8" cy="17.5" r="4.2"/><circle cx="5.7" cy="10" r="4.2"/></g><circle cx="12" cy="12" r="3" fill="#ffe9a8"/></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.6 4.6 0 018-3 4.6 4.6 0 018 3c0 5.8-8 11-8 11z"/></symbol>
+</svg>
+
+<nav aria-label="Main"><a href="#top">Home</a><a href="#words">Words</a><a href="#wall">Notes</a><a href="#about">About</a></nav>
+
+<section class="hero" id="top">
+<svg class="i fl" style="left:9%;top:36px;font-size:20px"><use href="#star"/></svg>
+<svg class="i fl" style="right:10%;top:120px;font-size:28px;animation-delay:1s"><use href="#flower"/></svg>
+<h1 class="logo">A Little<br>Pink Diary</h1>
+<p class="hello">Welcome to my tiny corner. ♡<br>If you stop by, leave me a little note.</p>
+<svg class="mascot" viewBox="0 0 200 225" role="img" aria-label="A cute round yellow dino with a pink bow, waving">
+<ellipse cx="100" cy="148" rx="58" ry="60" fill="#ffd54a"/>
+<ellipse cx="100" cy="158" rx="35" ry="38" fill="#fff4c2"/>
+<ellipse cx="72" cy="203" rx="21" ry="10" fill="#ffd54a"/><ellipse cx="128" cy="203" rx="21" ry="10" fill="#ffd54a"/>
+<ellipse cx="40" cy="128" rx="17" ry="11" transform="rotate(-35 40 128)" fill="#ffd54a"/><circle cx="31" cy="120" r="5" fill="#f6a5c0"/>
+<ellipse cx="160" cy="128" rx="17" ry="11" transform="rotate(35 160 128)" fill="#ffd54a"/><circle cx="169" cy="120" r="5" fill="#f6a5c0"/>
+<ellipse cx="100" cy="88" rx="64" ry="55" fill="#ffd54a"/>
+<ellipse cx="76" cy="84" rx="9" ry="11" fill="#2f4a35"/><circle cx="79" cy="79" r="3.2" fill="#fff"/>
+<ellipse cx="124" cy="84" rx="9" ry="11" fill="#2f4a35"/><circle cx="127" cy="79" r="3.2" fill="#fff"/>
+<ellipse cx="60" cy="102" rx="9" ry="6" fill="#ffb3c6" opacity=".75"/><ellipse cx="140" cy="102" rx="9" ry="6" fill="#ffb3c6" opacity=".75"/>
+<path d="M89 100q11 17 22 0z" fill="#7a2e3e"/>
+<path d="M100 36c-8-15-30-12-27 1s20 4 27-1zM100 36c8-15 30-12 27 1s-20 4-27-1z" fill="#f08cb0" stroke="#d9628f" stroke-width="2"/><circle cx="100" cy="36" r="6" fill="#d9628f"/>
+</svg>
+<p style="margin-top:26px"><a class="btn" id="formbtn" href="#words">Write a note</a></p>
+<p style="font-size:13px;color:var(--soft);max-width:22em;margin:14px auto 0">Please don't share private info like phone numbers, addresses, or passwords. I read every note, and only the ones I choose go on the wall.</p>
+</section>
+
+<section id="words">
+<h2>A few words from me</h2>
+<p class="sub">From my heart to yours</p>
+<span class="tape"></span>
+<div class="sheet about">
+<p>Some of you have been with me since primary school, all the way to middle school, and maybe even high school.</p>
+<p>Now we are at a small turning point in life. We are all stepping onto different paths, and that's okay.</p>
+<p>No matter which school you go to, and no matter where you are, we are still friends. Please don't forget that you have a very cute friend here. ♡</p>
+<p>If you want to tell me something or send me a wish, tap the pink "Write a note" button at the top. I don't know what else to say, but this is my wish for all of you:</p>
+<p style="font-family:Pacifico,cursive;color:var(--pink-d);font-size:19px;line-height:1.7;text-align:center;margin-top:18px">May your future be bright,<br>may all your wishes come true,<br>and see you all at the top! ✨</p>
+</div>
+</section>
+
+<section id="wall">
+<h2>Note wall</h2>
+<p class="sub">Little notes I picked to keep here</p>
+<div class="wall" id="wall-list"></div>
+</section>
+
+<section id="about" class="about">
+<h2>About this corner</h2>
+<p class="sub">A few simple words</p>
+<div class="sheet">
+<p>This is my small diary space for soft thoughts and kind words.</p>
+<p>You can leave a hello, a cheer, or just a tiny smile. I read every note, and I pin some of them on the wall.</p>
+<p>No sign-up needed, and I don't collect your personal info. Gentle words are all I ask ♡</p>
+</div>
+</section>
+
+<footer><svg class="i"><use href="#heart"/></svg><br>A Little Pink Diary · made with love</footer>
+
+<script>
+/* ============ THINGS YOU CAN EDIT ============ */
+
+// 1) Your Google Form link. The "Write a note" button on the home page opens it.
+const GOOGLE_FORM_EMBED_URL = "https://docs.google.com/forms/d/e/1FAIpQLScS2HxmcVSiZGtreBaFL1eOdLzUTiyii_akfgmHLdN5gq6PLw/viewform?embedded=true";
+
+// 2) Approved notes. One { } per note, separated by commas.
+//    name = who wrote it, date = when, text = the message. 
+const APPROVED_MESSAGES = [
+  { name: "hxm", date: "2026-10-10", text: "May your future be bright, may all your wishes come true, and see you all at the top! ✨" },
+];
+/* =============================================== */
+
+(function(){
+  const url=GOOGLE_FORM_EMBED_URL.trim().replace("?embedded=true","");
+  const hb=document.getElementById("formbtn");
+  if(/^https:\/\/docs\.google\.com\/forms\//.test(url)){hb.href=url;hb.target="_blank";hb.rel="noopener";}
+})();
+
+// Notes are inserted with textContent, so any HTML or script inside a message shows as plain text only.
+(function(){
+  const list=document.getElementById("wall-list");
+  if(!APPROVED_MESSAGES.length){
+    const e=document.createElement("div");e.className="ph";
+    e.textContent="The wall is empty for now. Be the first to leave a note!";
+    list.appendChild(e);return;
+  }
+  APPROVED_MESSAGES.forEach((m,i)=>{
+    const card=document.createElement("article");
+    card.className="note c"+(i%4);
+    card.style.animationDelay=(i*0.12)+"s";
+    const p=document.createElement("p");p.textContent=String(m.text||"");
+    const s=document.createElement("small");
+    const a=document.createElement("span");a.textContent="— "+String(m.name||"Anonymous");
+    const d=document.createElement("span");d.textContent=String(m.date||"");
+    s.append(a,d);card.append(p,s);list.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>
